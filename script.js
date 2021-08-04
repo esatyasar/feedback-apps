@@ -1,27 +1,29 @@
 
 let body =document.body;
 
-body.insertAdjacentHTML("beforeend", '<div class="btn-feedback"><button class="feedback">Feedback</button></div>');
+body.insertAdjacentHTML("beforeend", 
+    `<div class="btn-feedback">
+        <button class="feedback">Feedback</button>
+    </div>`);
     const btnFeedback = document.querySelector(".feedback");
     // onclick feedback 
     btnFeedback.addEventListener("click", () => {
     // form added
-    body.insertAdjacentHTML("beforeend", `<div class="main">
-    <div class="main-container">
-        <div class="form-container">
-            <form action="#" method="get" class="form">
-                <input type="text" class="userName" placeholder="user name">
-                <input type="hidden" class="userBrowser" value="browser">
-                <input type="hidden" class="operatingSystem" value="system">
-                <input type="hidden" class="userUrl" value="url">
-                <input type="hidden" class="type" value="type">
-                <textarea name="feedback" id="feedback" cols="30" rows="10"
+    body.insertAdjacentHTML("beforeend", 
+    `<div class="main">
+            <div class="form-container">
+                <form action="#" method="get" class="form">
+                    <input type="text" class="userName" placeholder="user name">
+                    <input type="hidden" class="userBrowser" value="browser">
+                    <input type="hidden" class="operatingSystem" value="system">
+                    <input type="hidden" class="userUrl" value="url">
+                    <input type="hidden" class="type" value="type">
+                    <textarea name="feedback" id="feedback" cols="30" rows="10"
                     placeholder="Please enter your feedback..."></textarea>
-                <button class="submit">Submit</button>
-            </form>
-        </div>
-    </div>
-</div>`);
+                    <button class="submit">Submit</button>
+                </form>
+            </div>
+    </div>`);
 
     btnFeedback.style.visibility = "hidden"; // feedback button hidden
 
@@ -40,7 +42,8 @@ function btnSubmit(){
         const userName = document.querySelector(".userName"); 
         if (typeof(Storage) !== "undefined") { //local Storage
         // Store
-        localStorage.setItem("userName", `${userName.value}`); //
+        localStorage.setItem("userName", `${userName.value}`); 
+        userName.value = localStorage.getItem("userName");
         
     }else{
         alert("Sorry, your browser does not support Web Storage...");
