@@ -64,7 +64,7 @@ function btnSubmit(){
     
 
 }
-
+// check user's browser
 function browser(){
     const browser =document.querySelector(".userBrowser")
     if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) 
@@ -87,7 +87,7 @@ function browser(){
         browser.value = "Your browser: Firefox";
         browser.setAttribute("disabled",false)
     }
-    else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) //IF IE > 10
+    else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) 
     {
         browser.value = "Your browser: IE";
         browser.setAttribute("disabled",false); 
@@ -97,7 +97,8 @@ function browser(){
        alert('unknown');
     }
 }
-    
+
+// find user's operating system
 function findSystem(){
     
     const operatingSystem = document.querySelector(".operatingSystem");
@@ -125,13 +126,14 @@ function findSystem(){
         }
          
 }
-
+// get user's url
 function getUrl(){
     const userUrl = document.querySelector(".userUrl");
     userUrl.value = `${window.location.href}`;
     userUrl.setAttribute("disabled",false);
 }
 
+// The entered values are transmitted to the server.
 function getAxios(){
     const url = "https://tipbaks.com/api/feedback";
     const userName = document.querySelector(".userName");
@@ -143,7 +145,7 @@ function getAxios(){
     const submit = document.querySelector(".submit");
     const success = document.querySelector(".success")
 
-    axios.post(url, {
+    axios.post(url, { 
         params: {
             name : `${userName.value}`,
             url : `${userUrl.value}`,
@@ -157,7 +159,7 @@ function getAxios(){
             success.innerHTML = "Your feedback get to saved successfully";
             success.style.color = "green";
             setTimeout(function(){
-                window.location.reload();
+                window.location.reload(); // refresh page after 3 second
              }, 3000);
         }else{
             submit.style.visibility = "hidden";
@@ -167,7 +169,7 @@ function getAxios(){
     })
 }
 
-
+// when click close button, the form is closing
 function closeForm(){
     const close = document.querySelector(".close");
     close.addEventListener("click",() =>{
