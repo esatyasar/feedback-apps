@@ -12,6 +12,9 @@ body.insertAdjacentHTML("beforeend",
     body.insertAdjacentHTML("beforeend", 
     `<div class="main">
             <div class="form-container">
+                <div class="close-container">
+                    <button class="close"><i class="fas fa-times"></i></button>
+                </div>
                 <form action="#" method="get" class="form">
                     <input type="text" class="userName" placeholder="user name">
                     <input type="hidden" class="userBrowser" value="browser">

@@ -22,14 +22,15 @@ body{
     position: absolute;
     left: 1rem;
     bottom: 0.5rem;
-    width: 35%;
-    height: 60%;
+    width: 30%;
+    height: 50%;
     background-color: #F5FBFD;
     border-radius: 8px ;
 }
 
 .form-container{
     height: 100%;
+    padding: 1rem;
 }
 .form{
     display: flex;
@@ -39,6 +40,19 @@ body{
     height: 100%;
     margin: auto;
 }
+.close-container{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -0.5rem;
+    margin-right: -0.5rem;
+}
+.close{
+    border:none;
+    outline: none;
+    cursor: pointer;
+    color: #021e33;
+}
+
 
 input{
     height: 2rem;
@@ -62,7 +76,7 @@ textarea{
 }
 .submit{
     width:40%;
-    margin: 0 auto 1rem auto;
+    margin: auto;
     height: 2rem;
     border-radius:5px;
     background-color: #021e33;
