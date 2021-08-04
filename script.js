@@ -6,6 +6,7 @@ body.insertAdjacentHTML("beforeend",
         <button class="feedback">Feedback</button>
     </div>`);
     const btnFeedback = document.querySelector(".feedback");
+    
     // onclick feedback 
     btnFeedback.addEventListener("click", () => {
     // form added
@@ -24,17 +25,22 @@ body.insertAdjacentHTML("beforeend",
                     <textarea name="feedback" id="feedback" cols="30" rows="10"
                     placeholder="Please enter your feedback..."></textarea>
                     <button class="submit">Submit</button>
+                    <span class="success" style="font-family:Nunito Sans"></span>
                 </form>
             </div>
     </div>`);
-
+    
     btnFeedback.style.visibility = "hidden"; // feedback button hidden
+   
+    
 
     // call functions
     btnSubmit();
     browser();
     findSystem();
     getUrl();
+    closeForm();
+   
 })
 
 // onclick submit button
@@ -53,6 +59,7 @@ function btnSubmit(){
     }
     // call axios
     getAxios();
+    
     })
     
 
@@ -133,6 +140,8 @@ function getAxios(){
     const browser =document.querySelector(".userBrowser");
     const type = document.querySelector(".type");
     const textArea = document.getElementById("feedback");
+    const submit = document.querySelector(".submit");
+    const success = document.querySelector(".success")
 
     axios.post(url, {
         params: {
@@ -142,6 +151,30 @@ function getAxios(){
             type : `${type.value}`,
             text : `${textArea.value}`
         }
+    }).then((response) => {
+        if(response.data.succes){
+            submit.style.visibility = "hidden";
+            success.innerHTML = "Your feedback get to saved successfully";
+            success.style.color = "green";
+            setTimeout(function(){
+                window.location.reload();
+             }, 3000);
+        }else{
+            submit.style.visibility = "hidden";
+            success.innerHTML = "Your feedback could not be received";
+            success.style.color = "red";
+        }
     })
 }
 
+
+function closeForm(){
+    const close = document.querySelector(".close");
+    close.addEventListener("click",() =>{
+        const btnFeedback = document.querySelector(".feedback");
+        const main = document.querySelector(".main");
+        btnFeedback.style.visibility = "visible"; // feedback button visible
+        main.style.visibility = "hidden" // form hidden
+        window.location.reload();
+})  
+}

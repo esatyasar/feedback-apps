@@ -84,13 +84,20 @@ textarea{
     border: none;
     outline: none;
     cursor: pointer;
-    border: none;
-    outline: none;
 }
 .submit:hover{
     background-color: #00111f;
 }
 
+.success{
+    width:90%;
+    min-width: 100px;
+    height: 2rem;
+    margin: auto;
+    font-size: 1rem;
+    margin-top: -1.6rem;
+    text-align: center;
+}
 .feedback{
     width: 7rem;
     height: 3rem;
