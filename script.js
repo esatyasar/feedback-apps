@@ -17,13 +17,21 @@ body.insertAdjacentHTML("beforeend",
                     <button class="close"><i class="fas fa-times"></i></button>
                 </div>
                 <form action="#" method="get" class="form">
-                    <input type="text" class="userName" placeholder="user name">
+                    <input type="text" class="input userName" placeholder="user name">
                     <input type="hidden" class="userBrowser" value="browser">
                     <input type="hidden" class="operatingSystem" value="system">
                     <input type="hidden" class="userUrl" value="url">
                     <input type="hidden" class="type" value="type">
-                    <textarea name="feedback" id="feedback" cols="30" rows="10"
+                    <input type="text" class="input title" placeholder="Issue Title">
+                    <textarea name="feedback" class="input" id="feedback" cols="30" rows="10"
                     placeholder="Please enter your feedback..."></textarea>
+                    <select class="priority input">
+                        <option value="Highest">Highest</option>
+                        <option value="High">High</option>
+                        <option value="Medium" selected>Medium</option>
+                        <option value="Low">Low</option>
+                        <option value="Lowest">Lowest</option>
+                    </select>
                     <button class="submit">Submit</button>
                     <span class="success" style="font-family:Nunito Sans"></span>
                 </form>
@@ -67,64 +75,15 @@ function btnSubmit(){
 // check user's browser
 function browser(){
     const browser =document.querySelector(".userBrowser")
-    if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) 
-    {
-        browser.value = "Your browser: Opera";
-        browser.setAttribute("disabled",false)
-    }
-    else if(navigator.userAgent.indexOf("Chrome") != -1 )
-    {
-        browser.value = "Your browser: Chrome";
-        browser.setAttribute("disabled",false)
-    }
-    else if(navigator.userAgent.indexOf("Safari") != -1)
-    {
-        browser.value = "Your browser: Safari";
-        browser.setAttribute("disabled",false)
-    }
-    else if(navigator.userAgent.indexOf("Firefox") != -1 ) 
-    {
-        browser.value = "Your browser: Firefox";
-        browser.setAttribute("disabled",false)
-    }
-    else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) 
-    {
-        browser.value = "Your browser: IE";
-        browser.setAttribute("disabled",false); 
-    }  
-    else 
-    {
-       alert('unknown');
-    }
+    browser.value=navigator.userAgent.replace(/\s+/g, '-').toLowerCase();
+    browser.setAttribute("disabled", false)
 }
 
 // find user's operating system
 function findSystem(){
-    
     const operatingSystem = document.querySelector(".operatingSystem");
-        if (navigator.appVersion.indexOf("Win") != -1){
-            operatingSystem.value = "Your operating System: Windows OS";
-            operatingSystem.setAttribute("disabled", false)
-        }  
-         
-        else if (navigator.appVersion.indexOf("Mac") != -1){
-            operatingSystem.value = "Your operating System: Mac Os";
-            operatingSystem.setAttribute("disabled", false)
-        }  
-          
-        else if (navigator.appVersion.indexOf("X11") != -1){
-            operatingSystem.value = "Your operating System: UNIX Os";
-            operatingSystem.setAttribute("disabled", false)
-        }  
-          
-        else if (navigator.appVersion.indexOf("Linux") != -1){
-            operatingSystem.value = "Your operating System: Linux OS";
-            operatingSystem.setAttribute("disabled", false)
-        }else{
-            operatingSystem.value = "Your operating system: not known"
-            operatingSystem.setAttribute("disabled", false)
-        }
-         
+    operatingSystem.value=navigator.appVersion.replace(/\s+/g, '-').toLowerCase();
+    operatingSystem.setAttribute("disabled", false)
 }
 // get user's url
 function getUrl(){
@@ -135,32 +94,40 @@ function getUrl(){
 
 // The entered values are transmitted to the server.
 function getAxios(){
-    const url = "https://tipbaks.com/api/feedback";
+    const url = "https://turacoon.test/api/feedback";
     const userName = document.querySelector(".userName");
     const userUrl = document.querySelector(".userUrl");
     const operatingSystem = document.querySelector(".operatingSystem");
     const browser =document.querySelector(".userBrowser");
     const type = document.querySelector(".type");
+    const title = document.querySelector(".title");
     const textArea = document.getElementById("feedback");
+    const priority = document.querySelector(".priority");
     const submit = document.querySelector(".submit");
     const success = document.querySelector(".success")
 
     axios.post(url, { 
-        params: {
-            name : `${userName.value}`,
-            url : `${userUrl.value}`,
-            env : `${operatingSystem.value} / ${browser.value}`,
-            type : `${type.value}`,
-            text : `${textArea.value}`
-        }
+        name : `${userName.value}`,
+        url : `${userUrl.value}`,
+        os : `${operatingSystem.value}`,
+        browser: `${browser.value}`,
+        title: `${title.value}`,
+        type : `${type.value}`,
+        text : `${textArea.value}`,
+        priority : `${priority.value}`
     }).then((response) => {
-        if(response.data.succes){
-            submit.style.visibility = "hidden";
+        debugger;
+        if(response.data.success){
+            submit.style.display = "none";
             success.innerHTML = "Your feedback get to saved successfully";
             success.style.color = "green";
             setTimeout(function(){
-                window.location.reload(); // refresh page after 3 second
-             }, 3000);
+                submit.style.display = "block-inline";
+                success.innerHTML = "";
+                success.style.visibility = "hidden";
+                const close = document.querySelector(".close");
+                close.click();
+             }, 1500);
         }else{
             submit.style.visibility = "hidden";
             success.innerHTML = "Your feedback could not be received";
