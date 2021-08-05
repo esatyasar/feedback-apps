@@ -61,16 +61,14 @@ function btnSubmit(){
         // Store
         localStorage.setItem("userName", `${userName.value}`); 
         userName.value = localStorage.getItem("userName");
-        
-    }else{
+
+    } else {
         alert("Sorry, your browser does not support Web Storage...");
     }
     // call axios
     getAxios();
     
     })
-    
-
 }
 // check user's browser
 function browser(){
