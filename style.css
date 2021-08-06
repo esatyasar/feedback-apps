@@ -1,42 +1,50 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+// * {
+//     margin: 0;
+//     padding: 0;
+//     box-sizing: border-box;
+// }
 
-html{
-    font-family: 'Nunito Sans', sans-serif;
-}
+// html {
+//     font-family: 'Nunito Sans', sans-serif;
+// }
 
-body{
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items:flex-end;
-    justify-content: flex-start;
-    position: relative;
-    flex-direction: column;
-    font-size: 0.8rem;
-}
-.main{
-    position: absolute;
+// body {
+//     height: 100vh;
+//     width: 100%;
+//     display: flex;
+//     align-items: flex-end;
+//     justify-content: flex-start;
+//     position: relative;
+//     flex-direction: column;
+//     font-size: 0.8rem;
+// }
+
+
+.main-feedback {
+    position: fixed;
     left: 1rem;
-    bottom: 0.5rem;
-    width: 30%;
-    height: 55%;
+    bottom: 2.5rem;
+    width: 25rem;
+    height: 25rem;
     background-color: #F5FBFD;
-    border-radius: 8px ;
+    border-radius: 8px;
+    z-index: 1000;
+    border: 2px solid aliceblue;
+
+
 }
+
 
 .input {
     margin-top: 10px;
 }
 
-.form-container{
+.form-container {
     height: 100%;
     padding: 1rem;
 }
-.form{
+
+.form {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -44,38 +52,40 @@ body{
     height: 100%;
     margin: auto;
 }
-.close-container{
+
+.close-container {
     display: flex;
     justify-content: flex-end;
     margin-top: -0.5rem;
     margin-right: -0.5rem;
 }
-.close{
-    border:none;
+
+.close {
+    border: none;
     outline: none;
     cursor: pointer;
     color: #021e33;
 }
 
 
-input{
+input {
     height: 2rem;
     width: 95%;
     border-radius: 5px;
     font-size: 1rem;
-    margin:auto;
+    margin: auto;
     padding: 0.8rem;
     border: none;
     outline: none;
     background-color: #c2d8df;
 }
 
-select{
+select {
     height: 2rem;
     width: 95%;
     border-radius: 5px;
     font-size: 1rem;
-    margin:auto;
+    margin: auto;
     padding: 0.4rem;
     border: none;
     outline: none;
@@ -83,20 +93,21 @@ select{
     margin-bottom: 10px;
 }
 
-textarea{
+textarea {
     width: 95%;
     margin: auto;
     border-radius: 5px;
     padding: 1rem;
-    border:none;
+    border: none;
     outline: none;
     background-color: #c2d8df;
 }
-.submit{
-    width:40%;
+
+.submit {
+    width: 40%;
     margin: auto;
     height: 2rem;
-    border-radius:5px;
+    border-radius: 5px;
     background-color: #021e33;
     color: white;
     border: none;
@@ -104,12 +115,13 @@ textarea{
     cursor: pointer;
     z-index: 100;
 }
-.submit:hover{
+
+.submit:hover {
     background-color: #00111f;
 }
 
-.success{
-    width:90%;
+.success {
+    width: 90%;
     min-width: 100px;
     height: 2rem;
     min-height: 2rem;
@@ -118,48 +130,69 @@ textarea{
     margin-top: -1.6rem;
     text-align: center;
 }
-.feedback{
-    width: 7rem;
-    height: 3rem;
-    background-color: #021e33;
-    color: white;
-    border-radius: 5px;
-    margin-left: 1rem;
-    margin-bottom: 0.5rem;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    position: absolute;
-    left: 0px;
-    bottom: 0.5rem;
-}
-.feedback:hover{
-    background-color: #00111f;
+
+
+.btn-feedback {
+
+    z-index: 99999999;
+    position: fixed;
+    left: 0;
+    width: 40px;
+    height: 50px;
+    bottom: 0;
+
+    @media (max-width:576px) {
+        bottom: 25%;
+    }
+
+    .feedback {
+        width: 7rem;
+        height: 3rem;
+        background-color: #021e33;
+        color: white;
+        border-radius: 5px;
+        margin-left: 1rem;
+        margin-bottom: 0.5rem;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        position: absolute;
+        left: 0px;
+        bottom: 0.5rem;
+    }
+
+    .feedback:hover {
+        background-color: #00111f;
+    }
 }
 
+
 @media screen and (max-width:950px) {
-    .main-container{
+    .main-container {
         width: 35%;
     }
-} 
+}
+
 @media screen and (max-width:650px) {
-    .main{
+    .main-feedback {
         width: 80%;
         margin: auto 10% auto 10%;
         left: 0rem;
     }
-    
-    .feedback{
+
+    .feedback {
         width: 5rem;
         height: 2rem;
         font-size: 0.7rem;
     }
 }
+
 @media screen and (max-width:500px) {
-    .main{
+    .main-feedback {
         bottom: 25%;
     }
-    .feedback{
+
+    .feedback {
         bottom: 50%;
     }
 }
